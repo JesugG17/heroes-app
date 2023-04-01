@@ -1,6 +1,12 @@
+import { HeroesList } from "../components"
 
 export const MarvelPage = () => {
   return (
-    <div>MarvelPage</div>
+    <>
+      <h1>Marvel</h1>
+      <hr />
+
+      <HeroesList publisher={'Marvel Comics'}/>
+    </>
   )
 }
