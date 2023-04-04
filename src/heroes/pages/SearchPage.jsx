@@ -9,10 +9,13 @@ export const SearchPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { hero } = queryString.parse(location.search);
+  const { hero = '' } = queryString.parse(location.search);
 
   const heroes = getHerosByName( hero );
 
+  const showSearch = hero.length === 0;
+  const showError = heroes.length === 0 && hero.length > 0;
+  
   const { searchText, onInputChange } = useForm({
     searchText: hero
   });
@@ -51,15 +54,20 @@ export const SearchPage = () => {
           <h4>Results</h4>
           <hr />
 
-          <div className="alert alert-primary">
+          <div 
+            className="alert alert-primary animate__animated animate__fadeIn" 
+            style={{ display: showSearch ? '' : 'none' }}
+          >
             Search a hero
           </div>
-          <div className="alert alert-danger">
+          <div 
+            className="alert alert-danger animate__animated animate__fadeIn" 
+            style={{ display: showError ? '' : 'none' }}
+          >
             No hero found with <b>{ hero }</b>
           </div>
 
           {
-            heroes.length > 0 &&
             heroes.map( hero => {
               return (
                 <HeroeCard 
