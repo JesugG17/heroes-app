@@ -1,29 +1,79 @@
-import { Route, RouterProvider, Routes } from 'react-router';
 import { LoginPage } from '../auth';
-// import { heroeRoutes } from '../heroes';
-import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { createBrowserRouter } from 'react-router-dom';
+import { DCPage, HeroPage, MarvelPage, SearchPage } from '../heroes/pages';
+import { HeroePageRender } from '../hoc/HeroePageRender';
+
+export const appRouter = createBrowserRouter([
+  {
+    path: '/login',
+    element: (
+      <PublicRoute>
+        <LoginPage />
+      </PublicRoute>
+    )
+  },
+  {
+    path: '/',
+    children: [
+      {
+        path: '/marvel',
+        element: (
+         <HeroePageRender>
+          <MarvelPage />
+         </HeroePageRender>
+        )
+      },
+      {
+        path: '/dc',
+        element: (
+          <HeroePageRender>
+            <DCPage />
+          </HeroePageRender>
+        )
+      },
+      {
+        path: '/search',
+        element: (
+          <HeroePageRender>
+            <SearchPage />
+          </HeroePageRender>
+        ),
+      },
+      {
+        path: '/hero/:id',
+        element: (
+          <HeroePageRender>
+            <HeroPage />
+          </HeroePageRender>
+        )
+      }
+    ]
+  }
+]);
 
 
-export const AppRouter = () => {
+// ! OLD CODE
 
-  return (
-    <>
+// export const AppRouter = () => {
+
+//   return (
+//     <>
       
-      <Routes>
-        {/* RUTAS PUBLICAS */}
-        <Route path="/login" element={
-          <PublicRoute>
-            <LoginPage />
-          </PublicRoute>} />
+//       <Routes>
+//         {/* RUTAS PUBLICAS */}
+//         <Route path="/login" element={
+//           <PublicRoute>
+//             <LoginPage />
+//           </PublicRoute>} />
         
-        {/* RUTAS PRIVADAS*/}
-        <Route path="/*" element={
-          <PrivateRoute>
-            {/* <RouterProvider router={ heroeRoutes } /> */}
-          </PrivateRoute>} />
-      </Routes>
+//         {/* RUTAS PRIVADAS*/}
+//         <Route path="/*" element={
+//           <PrivateRoute>
+//             {/* <RouterProvider router={ heroeRoutes } /> */}
+//           </PrivateRoute>} />
+//       </Routes>
 
-    </>
-  );
-};
+//     </>
+//   );
+// };
