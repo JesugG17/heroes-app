@@ -1,8 +1,9 @@
-import { Route, Routes } from 'react-router';
+import { Route, RouterProvider, Routes } from 'react-router';
 import { LoginPage } from '../auth';
-import { HeroesRoutes } from '../heroes';
+// import { heroeRoutes } from '../heroes';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+
 
 export const AppRouter = () => {
 
@@ -19,7 +20,7 @@ export const AppRouter = () => {
         {/* RUTAS PRIVADAS*/}
         <Route path="/*" element={
           <PrivateRoute>
-            <HeroesRoutes />
+            {/* <RouterProvider router={ heroeRoutes } /> */}
           </PrivateRoute>} />
       </Routes>
 

@@ -21,12 +21,12 @@ export const AuthProvider = ({ children }) => {
       const user = {
         id: 123,
         name
-      }
+      };
 
       const action = {
         type: types.login,
         payload: user
-      }
+      };
 
       localStorage.setItem('user', JSON.stringify(user));
 

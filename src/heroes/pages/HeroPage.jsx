@@ -24,7 +24,7 @@ export const HeroPage = () => {
         <div className="col-4">
           <img
             className='img-thumbnail' 
-            src={`/assets/heroes/${ hero.id }.jpg`} 
+            src={`/heroes/${ hero.id }.jpg`} 
             alt={ hero.superhero }
           />
         </div>
